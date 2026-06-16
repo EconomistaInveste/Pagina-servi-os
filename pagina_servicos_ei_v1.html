@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EconomistaInveste — Consultoria Financeira e Econômica</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', 'Segoe UI', sans-serif; background: #040D1A; color: #e2e8f0; line-height: 1.6; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ─── HERO ─── */
+  .hero { background: linear-gradient(135deg, #040D1A 0%, #0d1e35 50%, #1B2E4B 100%); padding: 80px 24px 100px; text-align: center; border-bottom: 1px solid #1e3a5f; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, #2563EB18 0%, transparent 70%); pointer-events: none; }
+  .badge { display: inline-block; background: #2563EB18; border: 1px solid #2563EB40; color: #93c5fd; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 28px; }
+  .hero h1 { font-size: clamp(32px, 6vw, 56px); font-weight: 800; line-height: 1.1; color: #fff; max-width: 780px; margin: 0 auto 20px; }
+  .hero h1 span { color: #2563EB; }
+  .hero p { font-size: 18px; color: #94a3b8; max-width: 520px; margin: 0 auto 40px; font-weight: 400; }
+  .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: #2563EB; color: #fff; padding: 14px 32px; border-radius: 10px; font-size: 15px; font-weight: 700; letter-spacing: 0.3px; transition: all 0.2s; display: inline-block; }
+  .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 8px 30px #2563EB40; }
+  .btn-ghost { border: 1px solid #2d4a6e; color: #94a3b8; padding: 14px 32px; border-radius: 10px; font-size: 15px; font-weight: 600; transition: all 0.2s; display: inline-block; }
+  .btn-ghost:hover { border-color: #2563EB; color: #93c5fd; }
+
+  /* ─── SEÇÕES ─── */
+  .section { padding: 80px 24px; max-width: 1000px; margin: 0 auto; }
+  .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #2563EB; margin-bottom: 12px; }
+  .section-title { font-size: clamp(26px, 4vw, 38px); font-weight: 800; color: #fff; margin-bottom: 16px; }
+  .section-sub { font-size: 16px; color: #64748b; max-width: 560px; line-height: 1.7; }
+  .divider { border: none; border-top: 1px solid #1e3a5f; }
+
+  /* ─── SOBRE ─── */
+  .sobre { background: #0d1e35; border-radius: 16px; padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  @media (max-width: 640px) { .sobre { grid-template-columns: 1fr; padding: 32px 24px; } }
+  .sobre-avatar { width: 120px; height: 120px; background: linear-gradient(135deg, #1B2E4B, #2563EB30); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 48px; margin-bottom: 20px; border: 2px solid #2563EB30; }
+  .sobre h3 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .sobre-role { font-size: 13px; color: #2563EB; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+  .sobre p { font-size: 15px; color: #94a3b8; line-height: 1.8; }
+  .sobre-stats { display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap; }
+  .stat { }
+  .stat-num { font-size: 24px; font-weight: 800; color: #fff; }
+  .stat-label { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+  /* ─── DIFERENCIAL ─── */
+  .diferencial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+  .dif-card { background: #1B2E4B; border-radius: 12px; padding: 28px; border: 1px solid #2d4a6e; transition: border-color 0.2s; }
+  .dif-card:hover { border-color: #2563EB40; }
+  .dif-icon { font-size: 28px; margin-bottom: 16px; }
+  .dif-card h4 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .dif-card p { font-size: 14px; color: #64748b; line-height: 1.7; }
+
+  /* ─── COMO FUNCIONA ─── */
+  .steps { margin-top: 40px; display: flex; flex-direction: column; gap: 0; }
+  .step { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid #1e3a5f; }
+  .step:last-child { border-bottom: none; }
+  .step-num { width: 40px; height: 40px; background: #2563EB; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: #fff; flex-shrink: 0; margin-top: 2px; }
+  .step-content h4 { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .step-content p { font-size: 14px; color: #64748b; line-height: 1.7; }
+
+  /* ─── PRODUTOS ─── */
+  .produtos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; margin-top: 40px; }
+  .produto { background: #1B2E4B; border-radius: 16px; padding: 36px; border: 1px solid #2d4a6e; position: relative; }
+  .produto.destaque { border-color: #2563EB; background: linear-gradient(135deg, #1B2E4B 0%, #1a2d50 100%); }
+  .produto-tag { position: absolute; top: -12px; left: 32px; background: #2563EB; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .produto h3 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; margin-top: 8px; }
+  .produto-sub { font-size: 13px; color: #64748b; margin-bottom: 24px; }
+  .produto-price { font-size: 36px; font-weight: 800; color: #2563EB; margin-bottom: 4px; }
+  .produto-price span { font-size: 16px; color: #64748b; font-weight: 400; }
+  .produto-includes { margin: 24px 0; display: flex; flex-direction: column; gap: 10px; }
+  .include-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #94a3b8; }
+  .include-item::before { content: '✓'; color: #10b981; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .produto .btn-primary { width: 100%; text-align: center; display: block; }
+  .produto .btn-ghost { width: 100%; text-align: center; display: block; }
+
+  /* ─── MÉTODO ─── */
+  .metodo-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-top: 40px; }
+  .metodo-step { background: #1B2E4B; border-radius: 10px; padding: 20px 16px; text-align: center; border: 1px solid #2d4a6e; position: relative; }
+  .metodo-step::after { content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: #2d4a6e; font-size: 16px; z-index: 1; }
+  .metodo-step:last-child::after { display: none; }
+  .metodo-num { font-size: 11px; font-weight: 700; color: #2563EB; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .metodo-step h5 { font-size: 13px; font-weight: 600; color: #e2e8f0; line-height: 1.4; }
+
+  /* ─── PÚBLICO ─── */
+  .publico-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 40px; }
+  .publico-card { background: #1B2E4B; border-radius: 12px; padding: 28px; border-left: 3px solid #2563EB; }
+  .publico-card h4 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .publico-perfil { font-size: 12px; color: #2563EB; font-weight: 600; margin-bottom: 14px; }
+  .publico-card p { font-size: 13px; color: #64748b; line-height: 1.7; }
+
+  /* ─── DEPOIMENTOS PLACEHOLDER ─── */
+  .dep-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+  .dep-card { background: #1B2E4B; border-radius: 12px; padding: 28px; border: 1px solid #2d4a6e; }
+  .dep-stars { color: #f59e0b; font-size: 14px; margin-bottom: 14px; }
+  .dep-text { font-size: 14px; color: #94a3b8; line-height: 1.8; font-style: italic; margin-bottom: 18px; }
+  .dep-autor { font-size: 13px; font-weight: 600; color: #e2e8f0; }
+  .dep-cargo { font-size: 12px; color: #64748b; }
+
+  /* ─── FAQ ─── */
+  .faq-list { margin-top: 40px; display: flex; flex-direction: column; gap: 0; }
+  .faq-item { border-bottom: 1px solid #1e3a5f; }
+  .faq-q { padding: 20px 0; font-size: 15px; font-weight: 600; color: #e2e8f0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-q span { color: #2563EB; font-size: 18px; transition: transform 0.2s; }
+  .faq-a { font-size: 14px; color: #64748b; line-height: 1.8; padding-bottom: 20px; display: none; }
+  .faq-item.open .faq-q span { transform: rotate(45deg); }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ─── CTA FINAL ─── */
+  .cta-final { background: linear-gradient(135deg, #1B2E4B 0%, #0d1e35 100%); border: 1px solid #2d4a6e; border-radius: 20px; padding: 60px 40px; text-align: center; margin: 0 24px; }
+  .cta-final h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 800; color: #fff; margin-bottom: 16px; }
+  .cta-final p { font-size: 16px; color: #64748b; max-width: 480px; margin: 0 auto 32px; }
+
+  /* ─── FOOTER ─── */
+  footer { text-align: center; padding: 40px 24px; font-size: 12px; color: #334155; border-top: 1px solid #1e3a5f; margin-top: 60px; }
+  footer strong { color: #64748b; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .produtos-grid, .metodo-steps { grid-template-columns: 1fr; }
+    .metodo-step::after { display: none; }
+    .cta-final { margin: 0; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">Consultoria Financeira & Econômica</div>
+  <h1>Transforme informação econômica em <span>decisões financeiras práticas</span></h1>
+  <p>Planejamento financeiro com visão macroeconômica. Para quem quer mais do que uma planilha — quer entender o cenário.</p>
+  <div class="hero-cta">
+    <a href="#diagnostico" class="btn-primary">Quero um Diagnóstico →</a>
+    <a href="#metodo" class="btn-ghost">Como funciona</a>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<div class="section">
+  <div class="sobre">
+    <div>
+      <div class="sobre-avatar">👨‍💼</div>
+      <h3>Mateus Rodrigues</h3>
+      <div class="sobre-role">Economista · @EconomistaInveste</div>
+      <p>Economista com foco em planejamento financeiro pessoal e análise macroeconômica aplicada. Ajudo profissionais a entender o contexto econômico real e tomar decisões financeiras mais inteligentes — não apenas "onde investir", mas por que, quando e quanto.</p>
+      <div class="sobre-stats">
+        <div class="stat"><div class="stat-num">7</div><div class="stat-label">Etapas do Método E.I.</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">Serviços disponíveis</div></div>
+        <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Café consumido</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label">Por que diferente</div>
+      <h3 style="font-size:20px;color:#fff;margin-bottom:16px;">Economista, não apenas assessor.</h3>
+      <p style="font-size:14px;color:#64748b;line-height:1.8;">A maioria dos consultores financeiros sabe alocação de carteira. Poucos sabem explicar como juros, inflação, câmbio e ciclos econômicos afetam diretamente o seu patrimônio — e o que fazer com isso. Esse é o diferencial do Método E.I.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- DIFERENCIAIS -->
+<div class="section">
+  <div class="section-label">Diferenciais</div>
+  <h2 class="section-title">Por que o Método E.I. funciona</h2>
+  <div class="diferencial-grid">
+    <div class="dif-card">
+      <div class="dif-icon">🔬</div>
+      <h4>Visão de Economista</h4>
+      <p>Análise macro integrada ao planejamento financeiro pessoal. Copom, Fed, câmbio, inflação — tudo conectado ao seu patrimônio específico.</p>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">📊</div>
+      <h4>Plano, não conselho genérico</h4>
+      <p>Cada cliente recebe um plano financeiro com lógica explicada, números reais e próximos passos concretos. Não um PDF com gráficos bonitos.</p>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">🎓</div>
+      <h4>Educação integrada</h4>
+      <p>Você não só recebe o plano — entende o raciocínio por trás. Isso cria autonomia progressiva e melhores decisões no longo prazo.</p>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">🔄</div>
+      <h4>Acompanhamento real</h4>
+      <p>O plano evolui conforme sua vida muda. Revisões periódicas garantem que a estratégia continua fazendo sentido no cenário atual.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PÚBLICO -->
+<div class="section">
+  <div class="section-label">Para quem é</div>
+  <h2 class="section-title">Você se identifica?</h2>
+  <div class="publico-grid">
+    <div class="publico-card">
+      <div class="publico-perfil">Perfil 1</div>
+      <h4>O Profissional Desorientado</h4>
+      <p>Ganha bem, mas não sabe exatamente o que fazer com o dinheiro. Tem CDB, Tesouro Direto, alguma coisa em corretora — mas sem estratégia clara. O dinheiro sobra no fim do mês e fica parado.</p>
+    </div>
+    <div class="publico-card">
+      <div class="publico-perfil">Perfil 2</div>
+      <h4>O Investidor Evoluindo</h4>
+      <p>Já investe há 1–3 anos por conta própria. Segue criadores de conteúdo, lê notícias financeiras. Mas quer validar se está no caminho certo com alguém que entende de economia de verdade.</p>
+    </div>
+    <div class="publico-card">
+      <div class="publico-perfil">Perfil 3</div>
+      <h4>O Pequeno Empresário</h4>
+      <p>Tem empresa funcionando, mas mistura finanças pessoais e empresariais. Não sabe quanto retirar de pró-labore, como investir o excedente de caixa ou como construir patrimônio pessoal enquanto o negócio cresce.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- MÉTODO -->
+<div class="section" id="metodo">
+  <div class="section-label">Metodologia</div>
+  <h2 class="section-title">O Método E.I.</h2>
+  <p class="section-sub">7 etapas estruturadas que garantem um diagnóstico completo e um plano executável — independente da sua situação atual.</p>
+  <div class="metodo-steps">
+    <div class="metodo-step"><div class="metodo-num">Etapa 1</div><h5>Diagnóstico Financeiro</h5></div>
+    <div class="metodo-step"><div class="metodo-num">Etapa 2</div><h5>Definição de Objetivos</h5></div>
+    <div class="metodo-step"><div class="metodo-num">Etapa 3</div><h5>Orçamento e Fluxo</h5></div>
+    <div class="metodo-step"><div class="metodo-num">Etapa 4</div><h5>Reserva de Emergência</h5></div>
+    <div class="metodo-step"><div class="metodo-num">Etapa 5</div><h5>Proteção Financeira</h5></div>
+    <div class="metodo-step"><div class="metodo-num">Etapa 6</div><h5>Estratégia de Investimentos</h5></div>
+    <div class="metodo-step"><div class="metodo-num">Etapa 7</div><h5>Acompanhamento</h5></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- COMO FUNCIONA -->
+<div class="section" id="diagnostico">
+  <div class="section-label">Processo</div>
+  <h2 class="section-title">Como funciona o atendimento</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Você preenche o formulário</h4>
+        <p>Um questionário de pré-diagnóstico (20–30 minutos) mapeando sua situação financeira atual: renda, patrimônio, objetivos, investimentos, dívidas e perfil de risco. Quanto mais detalhado, mais preciso será o diagnóstico.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Sessão de diagnóstico (90 minutos)</h4>
+        <p>Reunião online pelo Google Meet. Analisamos juntos sua situação completa, identificamos os principais gargalos e definimos as prioridades de ação. Essa sessão já gera clareza — mesmo antes do relatório.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Você recebe o Relatório de Diagnóstico E.I.</h4>
+        <p>Documento PDF com panorama financeiro completo, mapa dos seus pontos fortes e pontos de atenção, e as 3 recomendações prioritárias com próximos passos concretos. Semana seguinte à sessão.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Sessão de apresentação (30 minutos)</h4>
+        <p>Revisamos o relatório juntos, esclareço qualquer dúvida e discutimos se faz sentido avançar para o Plano E.I. completo. Sem pressão.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PRODUTOS -->
+<div class="section">
+  <div class="section-label">Serviços</div>
+  <h2 class="section-title">Escolha como começar</h2>
+  <p class="section-sub">Dois serviços. Sem pressão. O Diagnóstico é o primeiro passo — e já entrega valor por si só.</p>
+  <div class="produtos-grid">
+    <div class="produto destaque">
+      <div class="produto-tag">✦ Recomendado para começar</div>
+      <h3>Diagnóstico E.I.</h3>
+      <div class="produto-sub">Para quem quer clareza sobre a situação atual</div>
+      <div class="produto-price">R$197</div>
+      <div style="font-size:12px;color:#64748b;margin-bottom:4px;">Sessão única + relatório</div>
+      <div class="produto-includes">
+        <div class="include-item">Questionário completo de pré-diagnóstico</div>
+        <div class="include-item">Sessão de 90 minutos (Google Meet)</div>
+        <div class="include-item">Relatório de Diagnóstico E.I. em PDF</div>
+        <div class="include-item">3 recomendações prioritárias com próximos passos</div>
+        <div class="include-item">Sessão de apresentação de 30 minutos</div>
+        <div class="include-item">Prazo de entrega: até 7 dias úteis</div>
+      </div>
+      <a href="#agendar" class="btn-primary">Agendar Diagnóstico →</a>
+    </div>
+    <div class="produto">
+      <h3>Plano E.I.</h3>
+      <div class="produto-sub">Para quem quer um plano financeiro completo</div>
+      <div class="produto-price">R$697</div>
+      <div style="font-size:12px;color:#64748b;margin-bottom:4px;">3 sessões + plano completo</div>
+      <div class="produto-includes">
+        <div class="include-item">Tudo do Diagnóstico E.I.</div>
+        <div class="include-item">Plano financeiro personalizado (15–25 páginas)</div>
+        <div class="include-item">Dashboard E.I. configurado (Google Sheets)</div>
+        <div class="include-item">Estratégia de alocação de investimentos</div>
+        <div class="include-item">Cronograma de implementação (90 dias)</div>
+        <div class="include-item">Sessão de revisão após 30 dias (inclusa)</div>
+      </div>
+      <a href="#agendar" class="btn-ghost">Saiba mais →</a>
+    </div>
+  </div>
+  <p style="font-size:12px;color:#334155;text-align:center;margin-top:24px;">Mais serviços disponíveis em breve: Mentoria Mensal e Briefing Econômico Personalizado.</p>
+</div>
+
+<hr class="divider">
+
+<!-- FAQ -->
+<div class="section">
+  <div class="section-label">Dúvidas frequentes</div>
+  <h2 class="section-title">Perguntas e respostas</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Você é assessor de investimentos registrado na CVM? <span>+</span></div>
+      <div class="faq-a">Não. Sou economista e ofereço consultoria de planejamento financeiro pessoal. Não realizo recomendações de ativos específicos (ações, FIIs, CDBs específicos). Analiso estratégias de alocação, perfis de risco e objetivos financeiros. Este serviço não constitui recomendação de investimento nos termos da regulação CVM.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Para quem tem renda mais baixa vale a pena? <span>+</span></div>
+      <div class="faq-a">O serviço funciona melhor para quem tem renda a partir de R$3.000/mês e tem capacidade de poupar algo todo mês. Se você está em situação de endividamento crítico, posso ajudar com orientação básica gratuita pelo Instagram antes de avançar para uma consultoria paga.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">As sessões são presenciais ou online? <span>+</span></div>
+      <div class="faq-a">Totalmente online, via Google Meet. Isso permite atender clientes em qualquer cidade do Brasil. Você recebe os documentos por email e tem acesso ao Dashboard E.I. pelo Google Sheets.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Qual a diferença entre o Diagnóstico E.I. e o Plano E.I.? <span>+</span></div>
+      <div class="faq-a">O Diagnóstico mapeia onde você está hoje e o que precisa priorizar (3 recomendações práticas). O Plano vai além: define para onde você quer chegar, constrói a estratégia completa de investimentos, configura o Dashboard de acompanhamento e inclui uma revisão depois de 30 dias. O Diagnóstico é o primeiro passo — e muita gente avança para o Plano logo depois.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Quanto tempo leva do agendamento até receber o relatório? <span>+</span></div>
+      <div class="faq-a">Após o pagamento confirmado: 2–3 dias úteis para receber o questionário e agendar a sessão. Após a sessão de diagnóstico: até 7 dias úteis para receber o relatório. No total, o processo completo dura em média 2 semanas.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Como funciona o pagamento? <span>+</span></div>
+      <div class="faq-a">Via Pix (à vista) ou parcelado. Os dados para pagamento são enviados após a confirmação de interesse. Só inicio o processo após a confirmação do pagamento.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- CTA FINAL -->
+<div style="padding:60px 0;" id="agendar">
+  <div class="cta-final">
+    <div class="section-label" style="justify-content:center;display:flex;">Próximo passo</div>
+    <h2>Pronto para ter clareza financeira?</h2>
+    <p>Comece pelo Diagnóstico E.I. Uma sessão. Um relatório. Clareza sobre o que fazer agora.</p>
+    <a href="https://calendly.com" class="btn-primary" style="display:inline-block;">Agendar meu Diagnóstico — R$197 →</a>
+    <div style="margin-top:20px;font-size:13px;color:#334155;">Ou mande uma mensagem direto no Instagram: <strong style="color:#64748b;">@EconomistaInveste</strong></div>
+  </div>
+</div>
+
+<footer>
+  <strong>EconomistaInveste</strong> · Mateus Rodrigues · Economista<br>
+  <div style="margin-top:8px;">Este site não constitui recomendação de investimento. Conteúdo elaborado para fins educativos e de planejamento financeiro pessoal.</div>
+</footer>
+
+<script>
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  item.classList.toggle('open');
+}
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
